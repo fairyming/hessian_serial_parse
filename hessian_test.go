@@ -50,6 +50,9 @@ func TestHessianParse(t *testing.T) {
 		if p == nil || err != nil {
 			t.Errorf("NewHessianParse(%d) error: %v", id, err)
 		}
+		if _, err := p.Parse(); err != nil {
+			t.Errorf("Parse(%d) error: %v", id, err)
+		}
 
 	}
 }

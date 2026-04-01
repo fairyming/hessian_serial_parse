@@ -129,8 +129,6 @@ func (h HessianParse) readType() (string, error) {
 
 func (h HessianParse) Parse() (interface{}, error) {
 	chr, err := h.reader.Read1()
-	fmt.Println(chr)
-	// fmt.Println(h.reader.Position())
 	if err != nil {
 		return nil, err
 	}
@@ -181,7 +179,6 @@ func (h HessianParse) Parse() (interface{}, error) {
 		hsList := NewHessianList(hsType)
 		for i := 0; i < length; i++ {
 			arg, err := h.Parse()
-			fmt.Println(arg)
 			if err != nil {
 				return nil, err
 			}
@@ -225,6 +222,7 @@ func (h HessianParse) Parse() (interface{}, error) {
 		}
 		return hsMap, nil
 	case HS_ELEMENT_DATA_TAG:
+		h.reader.Skip(4)
 		return nil, nil
 	case HS_RESOLVE_REMOTE_TAG:
 		return nil, nil
